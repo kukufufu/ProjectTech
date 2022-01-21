@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectTech.Shared.Domain
 {
-    public class Customer : BaseDomainModel
+    public abstract class BaseDomainModel
     {
-
     }
 }
