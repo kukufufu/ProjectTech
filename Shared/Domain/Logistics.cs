@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectTech.Shared.Domain
 {
+    public class Logistics
     {
-
     }
 }
