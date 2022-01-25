@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProjectTech.Server.Models;
+using ProjectTech.Shared.Domain;
 
 namespace ProjectTech.Server.Data
 {
@@ -17,5 +18,14 @@ namespace ProjectTech.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Logistic> Logistics { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+
     }
 }

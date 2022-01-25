@@ -9,7 +9,7 @@ namespace ProjectTech.Shared.Domain
     public class Product
     {
         public int ProductId { get; set; }
-        public int CustId { get; set; }
+        public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public int Price { get; set; }
         public int Warranty { get; set; }

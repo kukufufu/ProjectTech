@@ -8,7 +8,7 @@ namespace ProjectTech.Shared.Domain
 {
     public class Logistic
     {
-        public int LogisticsId { get; set; }
+        public int LogisticId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
