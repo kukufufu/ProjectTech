@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Customer\**" />
+    <Compile Remove="Pages\Order\**" />
+    <Compile Remove="Pages\Staff\**" />
+    <Content Remove="Pages\Customer\**" />
+    <Content Remove="Pages\Order\**" />
+    <Content Remove="Pages\Staff\**" />
+    <EmbeddedResource Remove="Pages\Customer\**" />
+    <EmbeddedResource Remove="Pages\Order\**" />
+    <EmbeddedResource Remove="Pages\Staff\**" />
+    <None Remove="Pages\Customer\**" />
+    <None Remove="Pages\Order\**" />
+    <None Remove="Pages\Staff\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.12" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.12" />
@@ -22,13 +37,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Customer\" />
     <Folder Include="Pages\Logistics\" />
-    <Folder Include="Pages\Staff\" />
-    <Folder Include="Pages\Product\" />
-    <Folder Include="Pages\Payment\" />
-    <Folder Include="Pages\OrderItem\" />
-    <Folder Include="Pages\Order\" />
+    <Folder Include="Pages\Logistics\" />
+    <Folder Include="Pages\OrderItems\" />
+    <Folder Include="Pages\Products\" />
+    <Folder Include="Pages\Staffs\" />
+    <Folder Include="Pages\Orders\" />
+    <Folder Include="Pages\Payments\" />
   </ItemGroup>
 
 </Project>

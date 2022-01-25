@@ -8,5 +8,13 @@ namespace ProjectTech.Shared.Domain
 {
     public class Customer
     {
+        public int CustomerId { get; set; }
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
+        public string Name { get; set; }
+        public string Contact { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+
     }
 }
