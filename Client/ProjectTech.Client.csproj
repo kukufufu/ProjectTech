@@ -37,12 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Logistics\" />
-    <Folder Include="Pages\Logistics\" />
-    <Folder Include="Pages\OrderItems\" />
-    <Folder Include="Pages\Products\" />
-    <Folder Include="Pages\Staffs\" />
-    <Folder Include="Pages\Orders\" />
     <Folder Include="Pages\Payments\" />
   </ItemGroup>
 
