@@ -10,7 +10,7 @@ using ProjectTech.Server.Data;
 namespace ProjectTech.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220125160632_AddApplicationTables")]
+    [Migration("20220126030332_AddApplicationTables")]
     partial class AddApplicationTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
