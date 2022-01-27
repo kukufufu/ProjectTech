@@ -1,11 +1,9 @@
 ﻿@page "/orders/"
-<!--
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
-
-<h3 class="card-title">Car orders</h3>
+<h3 class="card-title">Orders</h3>
 
 <a href="/orders/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
@@ -24,10 +22,11 @@ else
         <thead>
             <tr>
                 <th>Order Id</th>
-                <th>Customer License</th>
+                <th>Customer Id</th>
                 <th>Date</th>
-                <th>Duration in days</th>
-                <th>Plate Number</th>
+                <th>Logistic Id</th>
+                <th>Shipping Address</th>
+                <th>Staff Id</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -35,20 +34,21 @@ else
             @foreach (var order in Orders)
             {
             <tr>
-                <td>@order.Id</td>
-                <td>@order.Customer.DrivingLicense</td>
-                <td>@order.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+                <td>@order.OrderId</td>
+                <td>@order.Customer.CustomerId</td>
+                <td>@order.DateTime.Date.ToString("dd MMMM yyyy")</td>
                 @*<td>@(order.DateIn != nullDT ? (order.DateIn - order.DateOut).TotalDays?.ToString() : "To Be Determined")</td>*@
-                <td>@(order.DateIn != null ? (order.DateIn.Value - order.DateOut).TotalDays.ToString() : "To Be Determined")</td>
-                <td>@order.Vehicle.LicensePlateNumber</td>
+                <td>@order.Logistic.LogisticId</td>
+                <td>@order.ShippingAddress</td>
+                <td>@order.Staff.StaffId</td>
                 <td>
-                    <a href="/orders/view/@order.Id" class="btn btn-primary">
+                    <a href="/orders/view/@order.OrderId" class="btn btn-primary">
                         <span class="oi oi-book"></span>
                     </a>
-                    <a href="/orders/edit/@order.Id" class="btn btn-warning">
+                    <a href="/orders/edit/@order.OrderId" class="btn btn-warning">
                         <span class="oi oi-pencil"></span>
                     </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(order.Id))">
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(order.OrderId))">
                         <span class="oi oi-delete"></span>
                     </button>
                 </td>
@@ -60,7 +60,6 @@ else
 
 @code {
     private List<Order> Orders;
-    private DateTime nullDT = new DateTime(1, 1, 1, 0, 0, 0);
 
     protected async override Task OnInitializedAsync()
     {
@@ -69,8 +68,8 @@ else
 
     async Task Delete(int orderId)
     {
-        var order = Orders.First(q => q.Id == orderId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {order.Id}?");
+        var order = Orders.First(q => q.OrderId == orderId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {order.OrderId}?");
         if (confirm)
 
         {
@@ -80,4 +79,3 @@ else
     }
 
 }
--->
