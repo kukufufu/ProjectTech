@@ -4,7 +4,7 @@
 @attribute [Authorize]
 
 
-<h3 class="card-title">Customers</h3>
+<h3 class="card-title">Car Customers</h3>
 
 <a href="/customers/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
@@ -25,9 +25,8 @@ else
                 <th>Customer Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Contact</th>
-                <th>Email</th>
-                <th>Address</th>
+                <th>Contact Number</th>
+                <th>Email Address</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -35,7 +34,7 @@ else
             @foreach (var customer in Customers)
             {
             <tr>
-                <td>@customer.CustomerId</td>
+                <td>@customer.CustomerId </td>
                 <td>@customer.FirstName</td>
                 <td>@customer.LastName</td>
                 <td>@customer.Contact</td>
