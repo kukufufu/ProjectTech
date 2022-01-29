@@ -6,6 +6,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using ProjectTech.Server.Configurations.Entities;
 using ProjectTech.Server.Models;
 using ProjectTech.Shared.Domain;
 
@@ -27,5 +28,7 @@ namespace ProjectTech.Server.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Staff> Staffs { get; set; }
 
+
+        
     }
 }
