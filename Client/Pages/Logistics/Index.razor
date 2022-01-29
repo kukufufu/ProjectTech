@@ -22,33 +22,28 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Customer Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Contact</th>
-                <th>Email</th>
+                <th>Logistic Id</th>
+                <th>Name</th>
                 <th>Address</th>
-                <th>Actions</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Customers)
+            @foreach (var logistic in Logistics)
             {
             <tr>
-                <td>@customer.CustomerId</td>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
-                <td>@customer.Contact</td>
-                <td>@customer.Email</td>
-                <td>@customer.Address</td>
+                <td>@logistic.LogisticId</td>
+                <td>@logistic.Name</td>
+                <td>@logistic.Address</td>
+                <td>@logistic.Contact</td>
                 <td>
-                    <a href="/customers/view/@customer.CustomerId" class="btn btn-primary">
+                    <a href="/logistics/view/@logistic.LogisticId" class="btn btn-primary">
                         <span class="oi oi-book"></span>
                     </a>
-                    <a href="/customers/edit/@customer.CustomerId" class="btn btn-warning">
+                    <a href="/logistics/edit/@logistic.LogisticId" class="btn btn-warning">
                         <span class="oi oi-pencil"></span>
                     </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(customer.CustomerId))">
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(logistic.LogisticId))">
                         <span class="oi oi-delete"></span>
                     </button>
                 </td>
@@ -59,21 +54,21 @@ else
 }
 
 @code {
-    private List<Customer> Customers;
+    private List<Logistic> Logistics;
 
     protected async override Task OnInitializedAsync()
     {
-        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+        Logistics = await _client.GetFromJsonAsync<List<Logistic>>($"{Endpoints.LogisticsEndpoint}");
     }
 
-    async Task Delete(int customerId)
+    async Task Delete(int logisticId)
     {
-        var customer = Customers.First(q => q.CustomerId == customerId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.CustomerId}?");
+        var logistic = Logistics.First(q => q.LogisticId == logisticId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {logistic.LogisticId}?");
         if (confirm)
 
         {
-            await _client.DeleteAsync($"{Endpoints.CustomersEndpoint}/{customerId}");
+            await _client.DeleteAsync($"{Endpoints.LogisticsEndpoint}/{logisticId}");
             await OnInitializedAsync();
         }
     }
