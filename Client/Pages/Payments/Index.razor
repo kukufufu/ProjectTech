@@ -60,13 +60,13 @@ else
     {
         Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
     }
-    async Task Delete(int OrderItemId)
+    async Task Delete(int PaymentId)
     {
-        var payment = Payment.First(q => q.OrderItemId == OrderItemId);
+        var payment = Payment.First(q => q.PaymentId == PaymentId);
         var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {payment.PaymentId}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.OrderItemsEndpoint}/{OrderItemId}");
+            await _client.DeleteAsync($"{Endpoints.PaymentsEndpoint}/{PaymentId}");
             await OnInitializedAsync();
         }
     }
