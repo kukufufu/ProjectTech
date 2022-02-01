@@ -56,7 +56,7 @@ namespace ProjectTech.Server.Repository
         public async Task Save(HttpContext httpContext)
         {
             //To be implemented
-            string user = "System";
+            //string user = "System";
 
             var entries = _context.ChangeTracker.Entries()
                 .Where(q => q.State == EntityState.Modified ||
