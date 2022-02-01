@@ -9,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectTech.Server.Data;
+using ProjectTech.Server.IRepository;
 using ProjectTech.Server.Models;
+using ProjectTech.Server.Repository;
 
 namespace ProjectTech.Server
 {
@@ -40,6 +42,8 @@ namespace ProjectTech.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

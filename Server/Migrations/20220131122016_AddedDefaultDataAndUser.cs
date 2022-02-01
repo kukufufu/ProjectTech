@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectTech.Server.Migrations
 {
-    public partial class newdb : Migration
+    public partial class AddedDefaultDataAndUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -248,7 +248,7 @@ namespace ProjectTech.Server.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Warranty = table.Column<int>(type: "int", nullable: false),
                     Qty = table.Column<int>(type: "int", nullable: false),
                     Specs = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -309,11 +309,18 @@ namespace ProjectTech.Server.Migrations
                     OrderItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderQty = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.OrderItemId);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItems_Products_ProductId",
                         column: x => x.ProductId,
@@ -392,6 +399,11 @@ namespace ProjectTech.Server.Migrations
                 name: "IX_DeviceCodes_Expiration",
                 table: "DeviceCodes",
                 column: "Expiration");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",

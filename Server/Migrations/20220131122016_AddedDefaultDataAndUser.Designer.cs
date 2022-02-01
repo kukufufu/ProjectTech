@@ -10,7 +10,7 @@ using ProjectTech.Server.Data;
 namespace ProjectTech.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220130113321_AddedDefaultDataAndUser")]
+    [Migration("20220131122016_AddedDefaultDataAndUser")]
     partial class AddedDefaultDataAndUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -418,6 +418,9 @@ namespace ProjectTech.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderQty")
                         .HasColumnType("int");
 
@@ -425,6 +428,8 @@ namespace ProjectTech.Server.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemId");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -597,11 +602,19 @@ namespace ProjectTech.Server.Migrations
 
             modelBuilder.Entity("ProjectTech.Shared.Domain.OrderItem", b =>
                 {
+                    b.HasOne("ProjectTech.Shared.Domain.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProjectTech.Shared.Domain.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
